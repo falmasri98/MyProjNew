@@ -1,0 +1,19 @@
+.Date-container {
+    text-align: center;
+    width: 15%;
+    padding: 1rem;
+    background-color: var(--sidebar-color);
+    border-radius: 15px;
+}
+
+@media screen and (max-width: 1200px) {
+    .Date-container {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .Date-container {
+        width: 100%;
+    }
+}

@@ -1,0 +1,59 @@
+.store-page__container a {
+    text-decoration: none;
+    color: black;
+}
+
+.stores-page__header, .stores-page__header {
+    width: 100%;
+    min-height: 30vh;
+    background-color: rgb(35, 127, 158);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.stores-page__content {
+    margin-top: 40px;
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.single-store__services {
+    margin-top: 40px;
+    padding: 1.5rem 3rem;
+}
+
+.services-list .store-service__item {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.2rem 1.5rem;
+    border-radius: 15px;
+    background-color: #EAEDED;
+}
+
+.services-list .btn-primary {
+    background-color: rgb(35, 127, 158);
+}
+
+.empty-services__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visa-payment .form-label {
+    margin-bottom: 0;
+}
+
+.visa-payment input {
+    outline: 1px solid lightgray;
+    padding: .5rem 1rem;
+}
