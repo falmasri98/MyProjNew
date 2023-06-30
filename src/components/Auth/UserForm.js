@@ -136,10 +136,10 @@ export default function UserForm() {
     }
   };
 
-  const onSuccess = (res) =>
-    console.log("Sign Up success! Current User: ", res.profileObj);
+  // const onSuccess = (res) =>
+  //   console.log("Sign Up success! Current User: ", res.profileObj);
 
-  const onFailure = (res) => console.log("Sign Up failed! res: ", res);
+  // const onFailure = (res) => console.log("Sign Up failed! res: ", res);
 
   return (
     <React.Fragment>

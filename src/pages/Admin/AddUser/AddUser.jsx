@@ -3,6 +3,7 @@ import "./AddUser.css";
 
 import Input from "../../../shared/components/FormElements/Input";
 import Button from "../../../shared/components/FormElements/Button";
+import ImageUpload from "../../../shared/components/FormElements/ImageUpload";
 import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner";
 import {
   VALIDATOR_REQUIRE,
@@ -38,6 +39,10 @@ export default function AddUser() {
         value: "",
         isValid: false,
       },
+      image: {
+        value: "",
+        isValid: false,
+      },
     },
     false
   );
@@ -45,20 +50,19 @@ export default function AddUser() {
   const addNewUserHandler = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("email", formState.inputs.email.value);
+    formData.append("password", formState.inputs.password.value);
+    formData.append("username", formState.inputs.username.value);
+    formData.append("phonenumber", formState.inputs.phonenumber.value);
+    formData.append("role", formState.inputs.role.value);
+    formData.append("image", formState.inputs.image.value);
+
     try {
       const responseData = await sendRequest(
         "http://localhost:5000/api/users/register",
         "POST",
-        JSON.stringify({
-          email: formState.inputs.email.value,
-          password: formState.inputs.password.value,
-          username: formState.inputs.username.value,
-          phonenumber: formState.inputs.phonenumber.value,
-          role: formState.inputs.role.value,
-        }),
-        {
-          "Content-Type": "application/json",
-        }
+        formData,
       );
     } catch (err) {
       console.log(err);
@@ -131,6 +135,9 @@ export default function AddUser() {
             errorText="Please enter a valid password, at least 6 characters"
             onInput={inputHandler}
           />
+        </div>
+        <div className="col">
+        <ImageUpload id="image" onInput={inputHandler} />
         </div>
       </div>
       <Button type="submit" disabled={!formState.isValid}>

@@ -20,8 +20,10 @@ export default function CustomerDashboard() {
 
   const [users, setUsers] = useState([]);
   const [providers, setProviders] = useState([]);
+  const [admins, setAdmins] = useState([]);
   const [deletedAccounts, setDeletedAccounts] = useState([]);
   const [aboutUsContent, setAboutUsContent] = useState([]);
+  const [contactUsContent, setContactUsContent] = useState([]);
 
   const fetchUsers = async () => {
     try {
@@ -46,9 +48,29 @@ export default function CustomerDashboard() {
     }
   };
 
+  const fetchContactUsContent = async () => {
+    try {
+      let responseData = await sendRequest("http://localhost:5000/api/admin/get-contactus-content");
+      setContactUsContent(responseData[0]);
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
+  const fetchAdmins = async () => {
+    try {
+      let responseData = await sendRequest("http://localhost:5000/api/admin/get-admins");
+      setAdmins(responseData);
+    } catch(err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
     fetchAboutUsContent();
+    fetchContactUsContent();
+    fetchAdmins();
   }, []);
 
   return (
@@ -60,19 +82,19 @@ export default function CustomerDashboard() {
           <Route
             index
             element={
-              <AdminHomePage users={users} providers={providers} fetchUsers={fetchUsers} />
+              <AdminHomePage users={users} providers={providers} admins={admins} fetchAdmins={fetchAdmins} fetchUsers={fetchUsers} />
             }
           />
           <Route
             path="/home"
             element={
-              <AdminHomePage users={users} providers={providers} fetchUsers={fetchUsers} />
+              <AdminHomePage users={users} providers={providers} admins={admins} fetchAdmins={fetchAdmins} fetchUsers={fetchUsers} />
             }
           />
           <Route path="/add-new-user" element={<AddUser />} />
           <Route path="/add-new-admin" element={<AddNewAdmin />} />
           <Route path="/deleted-accounts" element={<DeletedAccounts deletedAccounts={deletedAccounts} />} />
-          <Route path="/edit-content" element={<EditContent content={aboutUsContent} fetchAboutUsContent={fetchAboutUsContent} />} />
+          <Route path="/edit-content" element={<EditContent content={aboutUsContent} fetchAboutUsContent={fetchAboutUsContent} contactUsContent={contactUsContent} fetchContactUsContent={fetchContactUsContent} />} />
         </Routes>
       </div>
     </div>

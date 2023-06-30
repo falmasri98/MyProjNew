@@ -10,8 +10,8 @@ import EditUserRoleModal from "../../UI/EditUserRoleModal";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-export default function DataTable({ users, fetchUsers, deletedAccounts }) {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+export default function DataTable({ data, fetchData, deletedAccounts, cols }) {
+  const { sendRequest } = useHttpClient();
   const [open, setOpen] = React.useState(false);
   const [openEditModal, setOpenEditModal] = React.useState(false);
   const [selectedId, setSelectedId] = React.useState();
@@ -42,7 +42,7 @@ export default function DataTable({ users, fetchUsers, deletedAccounts }) {
       }
     );
 
-    fetchUsers();
+    fetchData();
     handleCloseEdit();
   };
 
@@ -53,7 +53,7 @@ export default function DataTable({ users, fetchUsers, deletedAccounts }) {
         "DELETE"
       );
 
-      fetchUsers();
+      fetchData();
       handleClose();
     } catch (err) {
       console.log(err);
@@ -120,8 +120,8 @@ export default function DataTable({ users, fetchUsers, deletedAccounts }) {
         editRole={updateUserRole}
       />
       <DataGrid
-        rows={users}
-        columns={columns}
+        rows={data}
+        columns={cols || columns}
         initialState={{
           pagination: {
             paginationModel: {

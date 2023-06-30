@@ -177,9 +177,8 @@ export default function Sidebar({ isSubscribed }) {
               <i className="bx bx-search icon"></i>
               <input type="text" placeholder="Search..." />
             </li>
-            {user?.role == "admin" && ADMIN_ROUTES}
+
             {user?.role === "provider" && PROVIDER_ROUTES}
-            {user?.role === "user" && USER_ROUTES}
           </div>
         )}
 

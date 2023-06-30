@@ -119,6 +119,36 @@ const adminLogin = async (req, res, next) => {
   res.json(checkEmail.rows);
 };
 
+const getAdmins = async (req, res, next) => {
+  try {
+    const all_records = await pool.query("SELECT * FROM admin");
+    res.json(all_records.rows);
+  } catch (err) {
+    const error = new HttpError(
+      "Could not fetch admins list, please try again.",
+      500
+    );
+    return next(error);
+  }
+};
+
+const deleteAdmin = async (req, res, next) => {
+  let adminId = req.params.adminId;
+  try {
+    const result = await pool.query("DELETE FROM admin WHERE id = $1", [
+      adminId,
+    ]);
+
+    if (result) res.json({ adminDeleted: true });
+  } catch (err) {
+    const error = new HttpError(
+      "Could not delete admin, please try again.",
+      500
+    );
+    return next(error);
+  }
+};
+
 const getUsers = async (req, res, next) => {
   try {
     const all_records = await pool.query("SELECT * FROM users");
@@ -182,6 +212,19 @@ const getAboutUsContent = async (req, res, next) => {
   }
 };
 
+const getContactUsContent = async (req, res, next) => {
+  try {
+    const result = await pool.query("SELECT * FROM contactus");
+    res.json(result.rows);
+  } catch (err) {
+    const error = new HttpError(
+      "Could not fetch contact us content, please try again.",
+      500
+    );
+    return next(error);
+  }
+};
+
 const updateAboutUsContent = async (req, res, next) => {
   let aboutUsText = req.body.aboutUsText;
   let whyChooseUs = req.body.whyChooseUs;
@@ -205,10 +248,36 @@ const updateAboutUsContent = async (req, res, next) => {
   }
 };
 
+const updateContactUsContent = async (req, res, next) => {
+  let ourLocation = req.body.ourLocation;
+  let phoneNumber = req.body.phoneNumber;
+  let email = req.body.email;
+
+  try {
+    let result = await pool.query(
+      "UPDATE contactus SET our_location = $1, phonenumber = $2, email = $3",
+      [ourLocation, phoneNumber, email]
+    );
+    if (result) {
+      res.json({ contentUpdated: true });
+    }
+  } catch (err) {
+    const error = new HttpError(
+      "Could not update contact us content, please try again.",
+      500
+    );
+    return next(error);
+  }
+};
+
 exports.addNewAdmin = addNewAdmin;
 exports.adminLogin = adminLogin;
+exports.getAdmins = getAdmins;
+exports.deleteAdmin = deleteAdmin;
 exports.getUsers = getUsers;
 exports.updateUserRole = updateUserRole;
 exports.deleteUser = deleteUser;
 exports.getAboutUsContent = getAboutUsContent;
+exports.getContactUsContent = getContactUsContent;
 exports.updateAboutUsContent = updateAboutUsContent;
+exports.updateContactUsContent = updateContactUsContent;

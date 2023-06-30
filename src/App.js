@@ -10,6 +10,7 @@ import StroesPage from "./pages/StroesPage/StoresPage";
 import AuthPage from "./pages/Auth/AuthPage";
 import SingleStore from "./pages/StroesPage/SingleStore";
 import AboutUs from "./pages/AboutUs/AboutUs";
+import ContactUs from "./pages/ContactUs/ContactUs";
 
 // Dashboards for [Admin, Customer, Provider]
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -50,6 +51,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} exact />
         <Route path="/about-us" element={<AboutUs />} exact />
+        <Route path="/contact-us" element={<ContactUs />} exact />
         <Route path="/stores" element={<StroesPage />} exact />
         <Route path="/stores/:storeId" element={<SingleStore />} exact />
         <Route path="/auth" element={<AuthPage />} exact />
@@ -68,6 +70,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} exact />
         <Route path="/about-us" element={<AboutUs />} exact />
+        <Route path="/contact-us" element={<ContactUs />} exact />
         <Route path="/auth" element={<AuthPage />} exact />
         <Route path="/admin-auth" element={<AdminLoginPage />} exact />
 
