@@ -195,10 +195,11 @@ export default function Sidebar({ isSubscribed }) {
 
         {user?.role === "admin" && (
           <div className="menu">
-            <li className="search-box">
+            {/* FFF */}
+            {/* <li className="search-box">
               <i className="bx bx-search icon"></i>
               <input type="text" placeholder="Search..." />
-            </li>
+            </li> */}
             {user?.role == "admin" && ADMIN_ROUTES}
           </div>
         )}
@@ -208,7 +209,8 @@ export default function Sidebar({ isSubscribed }) {
             <i className="bx bx-log-out icon"></i>
             <span className="text nav-text">Logout</span>
           </li>
-
+          <li></li>
+{/* 
           <li className="mode">
             <div className="sun-moon">
               <i className="bx bx-moon icon moon"></i>
@@ -219,7 +221,7 @@ export default function Sidebar({ isSubscribed }) {
             <div className="toggle-switch">
               <span className="switch"></span>
             </div>
-          </li>
+          </li> */}
         </div>
       </div>
     </nav>

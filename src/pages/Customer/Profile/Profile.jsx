@@ -124,7 +124,8 @@ export default function Profile({ fetchUserData, userData }) {
                 />
               </div>
               <div className="col">
-                <Input
+                {/* FFF 4 */}
+                {/* <Input
                   id="role"
                   class="form-select"
                   label="Which best describe you?"
@@ -137,7 +138,7 @@ export default function Profile({ fetchUserData, userData }) {
                   <option defaultValue>select role</option>
                   <option value="user">User</option>
                   <option value="provider">Provider</option>
-                </Input>
+                </Input> */}
               </div>
             </div>
             <Button type="submit" disabled={!formState.isValid}>

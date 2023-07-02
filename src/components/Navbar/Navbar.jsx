@@ -25,7 +25,12 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          <img className="img-fluid" width="100" height="100" src={Logo} alt="Good Food, Good Mood" />
+          <img      
+          className="img-fluid"
+            width="70"
+            height="70"
+            src={Logo}
+            alt="Good Food, Good Mood" />
         </a>
         <button
           className="navbar-toggler"
@@ -43,6 +48,15 @@ export default function Navbar() {
           <Link className="nav-link active" aria-current="page" to="/about-us">
                 {t("about_us")}
               </Link>
+              
+              <Link
+              className="nav-link text-black"
+              aria-current="page"
+              to="/contact-us"
+            >
+              {t("contact_us")}
+            </Link>
+
             {user?.role === 'admin' && <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/admin/dashboard">
               {t("dashboard")}
@@ -90,7 +104,7 @@ export default function Navbar() {
               handleChangeAppLanguage(currentLanguage === "ar" ? "en" : "ar")
             }
           >
-            {currentLanguage === "ar" ? "English" : "اللغة العربية"}
+            {currentLanguage === "ar" ? "اللغة الانجليزية" : "Arabic"}
           </button>
         </div>
       </div>
